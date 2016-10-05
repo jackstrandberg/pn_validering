@@ -54,24 +54,17 @@ public class IsPersonNumber extends ValidityCheck{
         }
 
         candidateString = formatString(candidateString);
-        if (candidateString.length() != 12) {
-            return false;
-        }
-
-        if (!candidateString.matches("[0-9]+")) {
-            return false;
-        }
-
-        String dateCandidate = candidateString.substring(0, candidateString.length() - 4);
-        if (!hasValidDate(dateCandidate)) {
+        if (candidateString.length() != 12
+            || !candidateString.matches("[0-9]+")
+            || !hasValidDate(candidateString)) {
             return false;
         }
 
         /* Calculate check digit and compare with control digit (last digit of input string) */
         int checkDigit = calculateCheckDigit(candidateString);
         int controlDigit = Integer.parseInt(candidateString.substring(candidateString.length() - 1));
+
         return checkDigit == controlDigit;
-        // if false log it
     }
 
     private String formatString(String s) {
@@ -88,7 +81,8 @@ public class IsPersonNumber extends ValidityCheck{
         return s;
     }
 
-    private boolean hasValidDate(String dateCandidate) {
+    private boolean hasValidDate(String candidateString) {
+        String dateCandidate = candidateString.substring(0, candidateString.length() - 4);
         int yearCandidate = Integer.parseInt(dateCandidate.substring(0,4));
         int monthCandidate = Integer.parseInt(dateCandidate.substring(4,6));
         int dayCandidate = Integer.parseInt(dateCandidate.substring(dateCandidate.length() - 2));

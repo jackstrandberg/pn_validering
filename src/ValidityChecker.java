@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +16,7 @@ public class ValidityChecker {
 
     public void run() {
         for (ValidityCheck checkObject : checkObjects) {
-            checkObject.check();
+            System.out.println(checkObject.check());
         }
     }
 
