@@ -1,3 +1,5 @@
+package validering;
+
 public class ValidityChecker {
 
     private ValidityCheck[] checkObjects;
@@ -6,8 +8,11 @@ public class ValidityChecker {
         this.checkObjects = checkObjects;
     }
 
-    public boolean check(Object candidateData) {
+    public void check() {
+        //log no input
+    }
 
+    public boolean check(Object candidateData) {
         boolean passedAllChecks = true;
         for (ValidityCheck checkObject : checkObjects) {
             if (!checkObject.check(candidateData)) {
