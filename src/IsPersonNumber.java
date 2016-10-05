@@ -1,3 +1,5 @@
+package validering;
+
 
 import java.time.YearMonth;
 import java.util.Calendar;
@@ -32,18 +34,23 @@ public class IsPersonNumber implements ValidityCheck{
     @Override public boolean check(Object candidateData){
         try {
             return isPersonNumber(candidateData);
-        } catch (Exception e) {
-            System.out.print("Error, unhandled input: " + e.getMessage() + ". "); //
+        } catch (IllegalArgumentException e){
+            System.out.print("Error: " + e.getMessage()); //
             return false;
         }
     }
 
     private boolean isPersonNumber(Object candidateData) {
-        // test for int, long, sträng
+        if (!(candidateData instanceof String)) {                           // Force input to be string so that
+            throw new IllegalArgumentException("Input not a string.");      // a 10 digit int starting with 0
+        }                                                                   // is not passed in as octal
         String candidateString = candidateData.toString().trim();
 
-        if (candidateString.length() < MIN_NUM_LENGTH || candidateString.length() > MAX_NUM_LENGTH) {
-            return false;
+        if (candidateString.length() < MIN_NUM_LENGTH) {
+            throw new IllegalArgumentException("Input too short.");
+        }
+        if (candidateString.length() > MAX_NUM_LENGTH) {
+            throw new IllegalArgumentException("Input too long");
         }
 
         candidateString = formatString(candidateString);
