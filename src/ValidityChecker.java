@@ -1,28 +1,26 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class ValidityChecker {
 
-    private List<ValidityCheck> checkObjects = new ArrayList<ValidityCheck>();
+    private ValidityCheck[] checkObjects;
 
-
-    public void addValidityCheck(ValidityCheck checkObject) {
-        checkObjects.add(checkObject);
+    public ValidityChecker(ValidityCheck[] checkObjects) {
+        this.checkObjects = checkObjects;
     }
 
-    public void reset() {
-        checkObjects = new ArrayList<ValidityCheck>();
-    }
+    public boolean check(Object candidateData) {
 
-    public void run() {
+        boolean passedAllChecks = true;
         for (ValidityCheck checkObject : checkObjects) {
-            System.out.println(checkObject.check());
+            if (!checkObject.check(candidateData)) {
+                //log
+                passedAllChecks = false;
+            }
         }
-    }
-
-    public void run(ValidityCheck... checkObjects) {
-        for (ValidityCheck checkObject : checkObjects) {
-            System.out.println(checkObject.check());
+        if (passedAllChecks) {
+            System.out.println("passed");
+            return true;
+        } else {
+            System.out.println("failed");
+            return false;
         }
     }
 

@@ -2,7 +2,7 @@
 import java.time.YearMonth;
 import java.util.Calendar;
 
-public class IsPersonNumber extends ValidityCheck{
+public class IsPersonNumber implements ValidityCheck{
 
         /*
         * Decides if input is a valid personnummer/personNumber.
@@ -29,25 +29,18 @@ public class IsPersonNumber extends ValidityCheck{
     private static final int MIN_NUM_LENGTH = 10;
     private static final int MAX_NUM_LENGTH = 13;
 
-    public IsPersonNumber() {
-        this.candidateData = "";
-    }
-
-    public IsPersonNumber(Object candidateData) {
-        this.candidateData = candidateData;
-    }
-
-    @Override public boolean check(){
+    @Override public boolean check(Object candidateData){
         try {
-            return isPersonNumber();
+            return isPersonNumber(candidateData);
         } catch (Exception e) {
-            System.out.print("Error, unhandled input: " + e.getMessage() + ". ");
+            System.out.print("Error, unhandled input: " + e.getMessage() + ". "); //
             return false;
         }
     }
 
-    private boolean isPersonNumber() {
-        String candidateString = candidateData.toString().trim();;
+    private boolean isPersonNumber(Object candidateData) {
+        // test for int, long, sträng
+        String candidateString = candidateData.toString().trim();
 
         if (candidateString.length() < MIN_NUM_LENGTH || candidateString.length() > MAX_NUM_LENGTH) {
             return false;
@@ -60,7 +53,7 @@ public class IsPersonNumber extends ValidityCheck{
             return false;
         }
 
-        /* Calculate check digit and compare with control digit (last digit of input string) */
+        /* Calculate check digit and compare with control digit (last digit of input) */
         int checkDigit = calculateCheckDigit(candidateString);
         int controlDigit = Integer.parseInt(candidateString.substring(candidateString.length() - 1));
 

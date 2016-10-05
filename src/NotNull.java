@@ -1,26 +1,18 @@
 
-class NotNull extends ValidityCheck {
+public class NotNull implements ValidityCheck {
 
-    public NotNull() {
-        this.candidateData = "";
-    }
-
-    public NotNull(Object candidateData) {
-        this.candidateData = candidateData;
-    }
-
-    @Override public boolean check() {
+    @Override public boolean check(Object candidateData) {
         try {
-            return notNull();
+            return notNull(candidateData);
         } catch (Exception e) {
             System.out.println("Error unhandled input: " + e.getMessage());
             return false;
         }
     }
 
-    private boolean notNull() {
+    private boolean notNull(Object candidateData) {
         try {
-            return (this.candidateData != null);
+            return (candidateData != null);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
             return false;

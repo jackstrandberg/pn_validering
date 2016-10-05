@@ -1,11 +1,5 @@
-import java.time.YearMonth;
-import java.util.Calendar;
-/* logging */
+public interface  ValidityCheck {
 
-public abstract class ValidityCheck {
-
-    protected Object candidateData;
-
-    public abstract boolean check();
+    public boolean check(Object candidateData);
 
 }
