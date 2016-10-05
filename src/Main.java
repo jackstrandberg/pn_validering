@@ -20,9 +20,7 @@ public class Main {
         ValidityCheck check8 = new NotNull();       // true
         ValidityCheck check9 = new NotNull(null);   // false
 
-        /*
-        * Add checks to checker then run
-        */
+        /* Add checks to checker then run */
         checker.addValidityCheck(check1);
         checker.addValidityCheck(check2);
         checker.addValidityCheck(check3);
@@ -35,9 +33,8 @@ public class Main {
         
         checker.run();
 
-        /*
-        * Or run checks by parameter
-        */
+
+        /* Or run checks by parameter */
         // checker.run(check6);
         // checker.run(check5, check2, check3);
     }
