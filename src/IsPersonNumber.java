@@ -31,11 +31,12 @@ public class IsPersonNumber implements ValidityCheck{
     private static final int MIN_NUM_LENGTH = 10;
     private static final int MAX_NUM_LENGTH = 13;
 
-    @Override public boolean check(Object candidateData){
+    @Override
+    public boolean check(Object candidateData){
         try {
             return isPersonNumber(candidateData);
         } catch (IllegalArgumentException e){
-            System.out.print("Error: " + e.getMessage()); //
+            System.out.println("Error: " + e.getMessage()); //
             return false;
         }
     }
@@ -49,14 +50,17 @@ public class IsPersonNumber implements ValidityCheck{
         if (candidateString.length() < MIN_NUM_LENGTH) {
             throw new IllegalArgumentException("Input too short.");
         }
+
         if (candidateString.length() > MAX_NUM_LENGTH) {
             throw new IllegalArgumentException("Input too long");
         }
 
-        candidateString = formatString(candidateString);
-        if (candidateString.length() != 12
-            || !candidateString.matches("[0-9]+")
-            || !hasValidDate(candidateString)) {
+        candidateString = formatPersonNumber(candidateString);
+        if (!candidateString.matches("[0-9]+")) {
+            throw new IllegalArgumentException("Input contains illegal characters");
+        }
+
+        if (candidateString.length() != 12 || !hasValidDate(candidateString)) {
             return false;
         }
 
@@ -67,7 +71,7 @@ public class IsPersonNumber implements ValidityCheck{
         return checkDigit == controlDigit;
     }
 
-    private String formatString(String s) {
+    private String formatPersonNumber(String s) {
         boolean hasDash = s.charAt(s.length() - 5) == '-';
         if (hasDash) {
             if (s.length() % 2 == 1) {

@@ -1,3 +1,5 @@
+package validering;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -12,10 +14,9 @@ public class Main {
         ValidityCheck[] checkObjects = {isPersonNumber, notNull};
         ValidityChecker checker = new ValidityChecker(checkObjects);
 
-        checker.check("190103203451");
-        checker.check("190103203452");
-        checker.check(null);
 
+        checker.check("19010320341");  // pass
+        checker.check(null);            // fail
     }
 
 }
