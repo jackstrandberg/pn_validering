@@ -1,4 +1,7 @@
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -9,7 +12,9 @@ public class Main {
         ValidityCheck isPersonNumber = new IsPersonNumber();
         ValidityCheck notNull = new NotNull();
 
-        ValidityCheck[] checkObjects = {isPersonNumber, notNull};
+        List<ValidityCheck> checkObjects = new ArrayList<ValidityCheck>();
+        checkObjects.add(isPersonNumber);
+        checkObjects.add(notNull);
 
 
         /* Create ValidityChecker */

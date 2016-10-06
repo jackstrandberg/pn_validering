@@ -1,13 +1,14 @@
 
+import java.util.List;
 import java.util.logging.Logger;
 
 
 public class ValidityChecker {
 
-    private ValidityCheck[] checkObjects;
+    private List<ValidityCheck> checkObjects;
     static Logger LOGGER = Logger.getLogger(ValidityChecker.class.getName());
 
-    public ValidityChecker(ValidityCheck[] checkObjects) {
+    public ValidityChecker(List<ValidityCheck> checkObjects) {
         this.checkObjects = checkObjects;
     }
 
