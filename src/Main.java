@@ -15,7 +15,7 @@ public class Main {
         /* Create ValidityChecker */
         ValidityChecker checker = new ValidityChecker(checkObjects);
 
-        
+
         checker.check("190103203451");    // pass
         checker.check("0103203451");      // pass
         checker.check("190103203452");    // fail, not correct control digit
