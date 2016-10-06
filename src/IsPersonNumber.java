@@ -1,5 +1,3 @@
-package validering;
-
 
 import java.time.YearMonth;
 import java.util.Calendar;
@@ -32,42 +30,29 @@ public class IsPersonNumber implements ValidityCheck{
     private static final int MAX_NUM_LENGTH = 13;
 
     @Override
-    public boolean check(Object candidateData){
-        try {
+    public boolean check(Object candidateData) {
             return isPersonNumber(candidateData);
-        } catch (NullPointerException e) {
-            LOGGER.warning("input " + e.getMessage());
-            return false;
-        } catch (IllegalArgumentException e){
-            LOGGER.warning("input " + candidateData.getClass().getSimpleName()
-                    + " " + candidateData + e.getMessage());
-            return false;
-        }
     }
 
-    private boolean isPersonNumber(Object candidateData) {
+    private boolean isPersonNumber(Object candidateData) throws NullPointerException, IllegalArgumentException {
         if (candidateData == null) {
-            throw new NullPointerException("null.");
+            return false;
         }
 
         // Assure input to be string so that a 10 digit int or long
         // beginning with a 0 is not passed in as octal
         if (!(candidateData instanceof String)) {
-            throw new IllegalArgumentException(" not a string.");
+            return false;
         }
         String candidateString = candidateData.toString().trim();
 
-        if (candidateString.length() < MIN_NUM_LENGTH) {
-            throw new IllegalArgumentException(" too short.");
-        }
-
-        if (candidateString.length() > MAX_NUM_LENGTH) {
-            throw new IllegalArgumentException(" too long");
+        if ((candidateString.length() < MIN_NUM_LENGTH) || (candidateString.length() > MAX_NUM_LENGTH)) {
+            return false;
         }
 
         candidateString = formatPersonNumber(candidateString);
         if (!candidateString.matches("[0-9]+")) {
-            throw new IllegalArgumentException(" contains illegal characters");
+            return false;
         }
 
         if (candidateString.length() != 12 || !hasValidDate(candidateString)) {
