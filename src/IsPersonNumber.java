@@ -1,3 +1,5 @@
+package validering;
+
 
 import java.time.YearMonth;
 import java.util.Calendar;
@@ -35,10 +37,6 @@ public class IsPersonNumber implements ValidityCheck{
     }
 
     private boolean isPersonNumber(Object candidateData) throws NullPointerException, IllegalArgumentException {
-        if (candidateData == null) {
-            return false;
-        }
-
         // Assure input to be string so that a 10 digit int or long
         // beginning with a 0 is not passed in as octal
         if (!(candidateData instanceof String)) {
@@ -51,11 +49,9 @@ public class IsPersonNumber implements ValidityCheck{
         }
 
         candidateString = formatPersonNumber(candidateString);
-        if (!candidateString.matches("[0-9]+")) {
-            return false;
-        }
-
-        if (candidateString.length() != 12 || !hasValidDate(candidateString)) {
+        if (!candidateString.matches("[0-9]+")
+                || candidateString.length() != 12
+                || !hasValidDate(candidateString)) {
             return false;
         }
 
