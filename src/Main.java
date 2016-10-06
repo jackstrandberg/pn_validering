@@ -1,4 +1,3 @@
-package validering;
 
 public class Main {
 
