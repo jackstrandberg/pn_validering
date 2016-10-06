@@ -1,4 +1,4 @@
 # pn_validering
 
-Validering av personnummer. Repo for learning Java.
+Validation of Swedish "person number". Repo for learning Java.
 
