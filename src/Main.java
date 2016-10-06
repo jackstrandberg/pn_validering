@@ -15,9 +15,10 @@ public class Main {
         ValidityChecker checker = new ValidityChecker(checkObjects);
 
 
-        checker.check("19010320341");  // pass
-        checker.check(null);            // fail
-        checker.check();
+        checker.check("190103203451");    // pass
+        checker.check("190103203452");    // fail
+        //checker.check(null);            // fail
+        //checker.check();
     }
 
 }
