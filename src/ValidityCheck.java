@@ -1,4 +1,3 @@
-package validering;
 
 import java.util.logging.Logger;
 

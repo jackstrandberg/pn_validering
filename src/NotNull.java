@@ -1,5 +1,3 @@
-package validering;
-
 
 public class NotNull implements ValidityCheck {
 

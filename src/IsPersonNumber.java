@@ -1,5 +1,3 @@
-package validering;
-
 
 import java.time.YearMonth;
 import java.util.Calendar;
