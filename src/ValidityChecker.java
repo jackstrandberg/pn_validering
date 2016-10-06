@@ -1,6 +1,7 @@
 
 import java.util.logging.Logger;
 
+
 public class ValidityChecker {
 
     private ValidityCheck[] checkObjects;
@@ -18,7 +19,7 @@ public class ValidityChecker {
         boolean passedAllChecks = true;
         for (ValidityCheck checkObject : checkObjects) {
             if (!checkObject.check(candidateData)) {
-                LOGGER.info("failed " + checkObject.getClass().getSimpleName() + " with input: " + candidateData);
+                LOGGER.info("failed " + checkObject.toString() + " with input: " + candidateData);
                 passedAllChecks = false;
             }
         }

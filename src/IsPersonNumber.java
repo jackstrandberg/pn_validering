@@ -27,6 +27,7 @@ public class IsPersonNumber implements ValidityCheck{
         */
 
     private static final int MIN_NUM_LENGTH = 10;
+    private static final int PERSON_NUMBER_LENGTH = 12;
     private static final int MAX_NUM_LENGTH = 13;
 
     @Override
@@ -48,7 +49,7 @@ public class IsPersonNumber implements ValidityCheck{
 
         candidateString = formatPersonNumber(candidateString);
         if (!candidateString.matches("[0-9]+")
-                || candidateString.length() != 12
+                || candidateString.length() != PERSON_NUMBER_LENGTH
                 || !hasValidDate(candidateString)) {
             return false;
         }
@@ -109,4 +110,8 @@ public class IsPersonNumber implements ValidityCheck{
         return (10 - (sumDigits % 10)) % 10;
     }
 
+    @Override
+    public String toString() {
+        return "IsPersonNumber";
+    }
 }

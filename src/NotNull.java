@@ -10,4 +10,9 @@ public class NotNull implements ValidityCheck {
             return (candidateData != null);
     }
 
+    @Override
+    public String toString(){
+        return "NotNull";
+    }
+
 }
