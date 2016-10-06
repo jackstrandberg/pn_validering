@@ -17,6 +17,7 @@ public class Main {
 
         checker.check("19010320341");  // pass
         checker.check(null);            // fail
+        checker.check();
     }
 
 }
