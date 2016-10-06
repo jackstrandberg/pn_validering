@@ -33,8 +33,12 @@ public class IsPersonNumber implements ValidityCheck{
     public boolean check(Object candidateData){
         try {
             return isPersonNumber(candidateData);
+        } catch (NullPointerException e) {
+            LOGGER.warning("input " + e.getMessage());
+            return false;
         } catch (IllegalArgumentException e){
-            LOGGER.warning("input " + candidateData + e.getMessage());
+            LOGGER.warning("input " + candidateData.getClass().getSimpleName()
+                    + " " + candidateData + e.getMessage());
             return false;
         }
     }
@@ -44,6 +48,9 @@ public class IsPersonNumber implements ValidityCheck{
         * Force input to be string so that a 10 digit int or long
         * beginning with a 0 is not passed in as octal
         */
+        if (candidateData == null) {
+            throw new NullPointerException("null.");
+        }
         if (!(candidateData instanceof String)) {
             throw new IllegalArgumentException(" not a string.");
         }
