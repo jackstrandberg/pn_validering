@@ -36,28 +36,28 @@ public class IsPersonNumber implements ValidityCheck{
         try {
             return isPersonNumber(candidateData);
         } catch (IllegalArgumentException e){
-            System.out.println("Error: " + e.getMessage()); //
+            LOGGER.warning("input " + candidateData + e.getMessage());
             return false;
         }
     }
 
     private boolean isPersonNumber(Object candidateData) {
         if (!(candidateData instanceof String)) {                           // Force input to be string so that
-            throw new IllegalArgumentException("Input not a string.");      // a 10 digit int starting with 0
+            throw new IllegalArgumentException(" not a string.");      // a 10 digit int starting with 0
         }                                                                   // is not passed in as octal
         String candidateString = candidateData.toString().trim();
 
         if (candidateString.length() < MIN_NUM_LENGTH) {
-            throw new IllegalArgumentException("Input too short.");
+            throw new IllegalArgumentException(" too short.");
         }
 
         if (candidateString.length() > MAX_NUM_LENGTH) {
-            throw new IllegalArgumentException("Input too long");
+            throw new IllegalArgumentException(" too long");
         }
 
         candidateString = formatPersonNumber(candidateString);
         if (!candidateString.matches("[0-9]+")) {
-            throw new IllegalArgumentException("Input contains illegal characters");
+            throw new IllegalArgumentException(" contains illegal characters");
         }
 
         if (candidateString.length() != 12 || !hasValidDate(candidateString)) {

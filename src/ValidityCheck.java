@@ -1,8 +1,11 @@
 package validering;
 
+import java.util.logging.Logger;
+
 public interface  ValidityCheck {
 
-    public boolean check(Object candidateData);
+    Logger LOGGER = Logger.getLogger(ValidityChecker.class.getName());
 
+    boolean check(Object candidateData);
 
 }

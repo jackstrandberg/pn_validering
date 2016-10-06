@@ -8,7 +8,7 @@ public class NotNull implements ValidityCheck {
         try {
             return notNull(candidateData);
         } catch (Exception e) {
-            System.out.println("Error unhandled input: " + e.getMessage());
+            LOGGER.warning("input " + candidateData + e.getMessage());
             return false;
         }
     }
