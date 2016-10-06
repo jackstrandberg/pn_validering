@@ -42,9 +42,13 @@ public class IsPersonNumber implements ValidityCheck{
     }
 
     private boolean isPersonNumber(Object candidateData) {
-        if (!(candidateData instanceof String)) {                           // Force input to be string so that
-            throw new IllegalArgumentException(" not a string.");      // a 10 digit int starting with 0
-        }                                                                   // is not passed in as octal
+        /*
+        * Force input to be string so that a 10 digit int or long
+        * beginning with a 0 is not passed in as octal
+        */
+        if (!(candidateData instanceof String)) {
+            throw new IllegalArgumentException(" not a string.");
+        }
         String candidateString = candidateData.toString().trim();
 
         if (candidateString.length() < MIN_NUM_LENGTH) {
