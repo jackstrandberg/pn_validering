@@ -35,8 +35,8 @@ public class IsPersonNumber implements ValidityCheck{
             return isPersonNumber(candidateData);
     }
 
-    private boolean isPersonNumber(Object candidateData) throws NullPointerException, IllegalArgumentException {
-        // Assure input to be string so that a 10 digit int or long
+    private boolean isPersonNumber(Object candidateData) {
+        // Assure input to be string so a 10 digit int or long
         // beginning with a 0 is not passed in as octal
         if (!(candidateData instanceof String)) {
             return false;
